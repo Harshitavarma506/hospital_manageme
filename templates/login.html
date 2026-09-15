@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}Login - MedCare{% endblock %}
+{% block body_class %}login-page{% endblock %}
+
+{% block nav_links %}
+<div class="nav-links">
+    <a href="{{ url_for('home') }}">Home</a>
+    <a href="{{ url_for('login') }}">Login</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-box">
+        <h1>🏥 MedCare</h1>
+        <h2>Login</h2>
+        <p class="login-subtitle">Login to access your dashboard</p>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="error-message">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('login') }}">
+            <label>Username</label>
+            <input type="text" name="username" placeholder="Enter username" required>
+
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Enter password" required>
+
+            <label>Select Role</label>
+            <select name="role" required>
+                <option value="">-- Select Role --</option>
+                <option value="doctor">Doctor</option>
+                <option value="patient">Patient</option>
+            </select>
+
+            <button type="submit" class="btn login-btn">Login</button>
+        </form>
+
+        <div class="demo-login">
+            <h3>Demo Login</h3>
+            <p><strong>Doctor:</strong> doctor1 / doctor123</p>
+            <p><strong>Patient:</strong> patient1 / patient123</p>
+        </div>
+
+        <a href="{{ url_for('home') }}" class="back-link">← Back to Home</a>
+    </div>
+</div>
+{% endblock %}
+
+{#
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - MedCare</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="login-page">
+<div class="login-container">
+    <div class="login-box">
+        <h1>🏥 MedCare</h1>
+        <h2>Login</h2>
+        <p class="login-subtitle">Login to access your dashboard</p>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="error-message">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('login') }}">
+            <label>Username</label>
+            <input type="text" name="username" placeholder="Enter username" required>
+
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Enter password" required>
+
+            <label>Select Role</label>
+            <select name="role" required>
+                <option value="">-- Select Role --</option>
+                <option value="doctor">Doctor</option>
+                <option value="patient">Patient</option>
+            </select>
+
+            <button type="submit" class="btn login-btn">Login</button>
+        </form>
+
+        <div class="demo-login">
+            <h3>Demo Login</h3>
+            <p><strong>Doctor:</strong> doctor1 / doctor123</p>
+            <p><strong>Patient:</strong> patient1 / patient123</p>
+        </div>
+
+        <a href="/" class="back-link">← Back to Home</a>
+    </div>
+</div>
+</body>
+</html>
+#}

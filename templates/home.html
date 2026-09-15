@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}MedCare Hospital{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h1>Welcome to MedCare Hospital</h1>
+        <p>Quality healthcare management made simple.</p>
+        <a href="{{ url_for('login') }}" class="btn">Login to Continue</a>
+    </div>
+</section>
+
+<section class="services">
+    <h2>Our Services</h2>
+    <div class="service-container">
+        <div class="service-card">
+            <div class="icon">👨‍⚕️</div>
+            <h3>Doctors</h3>
+            <p>Doctors can manage appointments and view patient information.</p>
+        </div>
+        <div class="service-card">
+            <div class="icon">🧑‍⚕️</div>
+            <h3>Patients</h3>
+            <p>Patients can view doctors and book appointments easily.</p>
+        </div>
+        <div class="service-card">
+            <div class="icon">📅</div>
+            <h3>Appointments</h3>
+            <p>Manage hospital appointments in one simple system.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{#
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedCare Hospital</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<nav class="navbar">
+    <div class="logo">🏥 MedCare</div>
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="{{ url_for('login') }}">Login</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Welcome to MedCare Hospital</h1>
+        <p>Quality healthcare management made simple.</p>
+        <a href="{{ url_for('login') }}" class="btn">Login to Continue</a>
+    </div>
+</section>
+
+<section class="services">
+    <h2>Our Services</h2>
+    <div class="service-container">
+        <div class="service-card">
+            <div class="icon">👨‍⚕️</div>
+            <h3>Doctors</h3>
+            <p>Doctors can manage appointments and view patient information.</p>
+        </div>
+        <div class="service-card">
+            <div class="icon">🧑‍⚕️</div>
+            <h3>Patients</h3>
+            <p>Patients can view doctors and book appointments easily.</p>
+        </div>
+        <div class="service-card">
+            <div class="icon">📅</div>
+            <h3>Appointments</h3>
+            <p>Manage hospital appointments in one simple system.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 MedCare Hospital</p>
+</footer>
+</body>
+</html>
+#}

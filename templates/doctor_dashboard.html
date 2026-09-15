@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+
+{% block title %}Doctor Dashboard{% endblock %}
+{% block body_class %}dashboard-page{% endblock %}
+
+{% block nav_right %}
+<div>
+    <span class="welcome">Welcome, Dr. {{ session["username"] }}</span>
+    <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <h1>Doctor Dashboard</h1>
+    <p class="dashboard-subtitle">Manage your hospital activities</p>
+
+    <div class="dashboard-cards">
+        <div class="dashboard-card">
+            <h3>👨‍⚕️ Doctors</h3>
+            <p>{{ doctors|length }}</p>
+        </div>
+        <div class="dashboard-card">
+            <h3>📅 Appointments</h3>
+            <p>{{ appointments|length }}</p>
+        </div>
+        <div class="dashboard-card">
+            <h3>🏥 Hospital</h3>
+            <p>Active</p>
+        </div>
+    </div>
+
+    <section class="dashboard-section">
+        <h2>Doctor Information</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Specialization</th>
+                    <th>Available Days</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for doctor in doctors %}
+                <tr>
+                    <td>{{ doctor["name"] }}</td>
+                    <td>{{ doctor["specialization"] }}</td>
+                    <td>{{ doctor["available_day"] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <section class="dashboard-section">
+        <h2>Patient Appointments</h2>
+        {% if appointments %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Patient</th>
+                    <th>Doctor</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Reason</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in appointments %}
+                <tr>
+                    <td>{{ appointment["patient_name"] }}</td>
+                    <td>{{ appointment["doctor_name"] }}</td>
+                    <td>{{ appointment["appointment_date"] }}</td>
+                    <td>{{ appointment["appointment_time"] }}</td>
+                    <td>{{ appointment["reason"] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="empty-message">No appointments available.</p>
+        {% endif %}
+    </section>
+</div>
+{% endblock %}
+
+{#
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<nav class="navbar">
+    <div class="logo">🏥 MedCare</div>
+    <div>
+        <span class="welcome">Welcome, Dr. {{ session["username"] }}</span>
+        <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+    </div>
+</nav>
+
+<div class="dashboard">
+    <h1>Doctor Dashboard</h1>
+    <p class="dashboard-subtitle">Manage your hospital activities</p>
+
+    <div class="dashboard-cards">
+        <div class="dashboard-card">
+            <h3>👨‍⚕️ Doctors</h3>
+            <p>{{ doctors|length }}</p>
+        </div>
+        <div class="dashboard-card">
+            <h3>📅 Appointments</h3>
+            <p>{{ appointments|length }}</p>
+        </div>
+        <div class="dashboard-card">
+            <h3>🏥 Hospital</h3>
+            <p>Active</p>
+        </div>
+    </div>
+
+    <section class="dashboard-section">
+        <h2>Doctor Information</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Specialization</th>
+                    <th>Available Days</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for doctor in doctors %}
+                <tr>
+                    <td>{{ doctor["name"] }}</td>
+                    <td>{{ doctor["specialization"] }}</td>
+                    <td>{{ doctor["available_day"] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <section class="dashboard-section">
+        <h2>Patient Appointments</h2>
+        {% if appointments %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Patient</th>
+                    <th>Doctor</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Reason</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in appointments %}
+                <tr>
+                    <td>{{ appointment["patient_name"] }}</td>
+                    <td>{{ appointment["doctor_name"] }}</td>
+                    <td>{{ appointment["appointment_date"] }}</td>
+                    <td>{{ appointment["appointment_time"] }}</td>
+                    <td>{{ appointment["reason"] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="empty-message">No appointments available.</p>
+        {% endif %}
+    </section>
+</div>
+</body>
+</html>
+#}
